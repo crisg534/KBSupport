@@ -32,8 +32,9 @@
            <%- if user_signed_in?%>
             <div class="container nav-collapse">
               <ul class="nav">
-                <li><%= link_to "Post", user_posts_path(current_user)  %></li>
+                <li><%= link_to "Posts", user_posts_path(current_user)  %></li>
               </ul>
+              <p class="navbar-text pull-right"> <%= current_user.email  %> <%= link_to "Sign Out", destroy_user_session_path, :method => :delete ,:class=>"btn btn-info"  %> </p>
             </div><!--/.nav-collapse -->
             <%-end %>
         </div>
@@ -53,6 +54,7 @@
                   <ul class="nav nav-list">
                     <li class="nav-header">Menu</li>
                     <li><%= link_to "New Post", new_user_post_path(current_user)  %></li>
+                    <li><%= link_to "My Post",  my_posts_user_posts_path(current_user)%></li>
                   </ul>
                 </div><!--/.well -->
               </div><!--/span-->

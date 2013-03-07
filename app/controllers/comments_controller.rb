@@ -14,4 +14,17 @@ class CommentsController < ApplicationController
     @post     = Post.find(params[:post_id])
     @comment =  @post.comments.build
   end
+
+  def destroy
+    p "aaa"
+    @post     = Post.find(params[:post_id])
+    @comment  = Comment.find(params[:id])
+    if @comment.destroy
+      flash[:notice] = "has eliminado el comentario"
+      redirect_to user_post_path(current_user, @post.id)
+    else
+      flash[:error] = "No se ha podido eliminar el comentario"
+       redirect_to user_post_path(current_user, @post)
+    end
+  end
 end

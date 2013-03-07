@@ -4,13 +4,15 @@
     <tr>
       <th>Title</th>
       <th>User</th>
+      <th>Date</th>
       <th>Show Post </th>
     </tr>
   </thead>
   <tbody>
     <%- @post.each do |post| %>
       <tr>
-        <td><%=post.title%></td> <td><%=post.user.email%></td> <td><%= link_to "Show", user_post_path(current_user, post.id)  %></td>
+        <td><%=post.title%></td> <td><%=post.user.email%></td><td><%= post.created_at.strftime("%A %d. %B %Y, %H %P") %></td><td><%= link_to "Show", user_post_path(current_user, post.id)  %></td>
+
       </tr>
     <%-end%>
   </tbody>

@@ -4,13 +4,25 @@ class PostsController < ApplicationController
     @post = Post.order('created_at DESC')
   end
 
-  def delete
+  def my_posts
+    @post = current_user.post.order('created_at DESC')
+  end
+
+  def destroy
+    @post     = Post.find(params[:id])
+    if @post.destroy
+      flash[:notice] = "has eliminado el post"
+      redirect_to my_posts_user_posts_path(current_user)
+    else
+      flash[:notice] = "No se ha podido eliminar el post"
+      redirect_to my_posts_user_posts_path(current_user)
+    end
   end
 
   def show
     @post     = Post.find(params[:id])
     @comments = @post.comments
-    @comment =  @post.comments.build
+    @comment  =  @post.comments.build
     session[:post_id] = @post.id
   end
 

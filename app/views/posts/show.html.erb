@@ -8,17 +8,27 @@
     <p>Post by: <strong><%= @post.user.email %></strong></p>
     <br/>
     <br/>
+    <%- if @comments.any? %>
     <h3>Comments</h3>
     <br/>
-    <%- if @comments.any? %>
         <%- @comments.each do |comment| %>
-          <div class="row-fluid">
-            <div class="well">
-              <p>Comment by: <strong><%=comment.user ? comment.user.email : "" %></strong></p> 
-              <br/>
-              <%=comment.comment ? comment.comment.html_safe : "" %>
+          <%- if comment.id %>
+            <div class="row-fluid">
+              <div class="well">
+                <div class="row show-grid">
+                  <div class="span4"> <p>Comment by: <strong><%=comment.user ? comment.user.email : "" %></strong></p>
+                  </div>
+                  <div class="span2 offset2">
+                    <%- if comment.user.id = current_user.id %>
+                      <%=link_to "delete", user_post_comment_path(current_user.id, @post.id, comment.id), :method=>:delete, :confirm=>"Are you sure? " %>
+                    <%- end %>
+                  </div>
+              </div>         
+                <br/>
+                <%=comment.comment ? comment.comment.html_safe : "" %>
+              </div>
             </div>
-          </div>
+            <%- end %>
         <%-end%>
       <%-end %>
   </span>
