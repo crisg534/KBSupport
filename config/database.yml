@@ -3,7 +3,7 @@ defaults: &defaults
   template: template0
   host: 'localhost'
   username: postgres
-  password: password
+  password: koombea
   
 test:
   <<: *defaults
