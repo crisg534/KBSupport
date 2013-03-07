@@ -19,7 +19,7 @@
                   <div class="span4"> <p>Comment by: <strong><%=comment.user ? comment.user.email : "" %></strong></p>
                   </div>
                   <div class="span2 offset2">
-                    <%- if comment.user.id = current_user.id %>
+                    <%- if comment.user.id == current_user.id %>
                       <%=link_to "delete", user_post_comment_path(current_user.id, @post.id, comment.id), :method=>:delete, :confirm=>"Are you sure? " %>
                     <%- end %>
                   </div>
