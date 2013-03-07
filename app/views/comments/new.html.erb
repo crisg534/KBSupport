@@ -3,8 +3,6 @@
     <h3>Comment</h3> 
     <div class ="well">
       <%= form_for (@comment) , url: { action: "create_comment" } do |f| %>
-        <%= f.label :title %>
-        <%= f.text_field :title, class: 'span2' %>
         <%= f.label :comment %>
         <%= f.text_area :comment,  rows:"12", :style => "width:500px;" %>
         <div class = "form-actions">
