@@ -1,10 +1,14 @@
+<%=  render "/shared/flash_messages"%>
 <div class="row-fluid">
   <span class="span12">
     <h2>  <%= @post.title%></h2>
     <br/>
     <%= @post.comment.html_safe %>
     <br/>
-    <h4>Comments</h4>
+    <p>Post by: <strong><%= @post.user.email %></strong></p>
+    <br/>
+    <br/>
+    <h3>Comments</h3>
     <br/>
     <%- if @comments.any? %>
         <%- @comments.each do |comment| %>

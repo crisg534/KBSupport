@@ -1,0 +1,19 @@
+<%- flash.each do |key, value| %>
+  <%- if (key == :error)%>
+    <div class ="alert alert-error", data-alert="alert" >
+      <a class ="close" href ="#"> x</a>
+      <p><%= value %></p>
+    </div>
+  <%-end %>
+  <%- if (key == :notice) %>
+    <div class ="alert alert-success", data-alert ="alert">
+      <a class ="close" href ="#"> x</a>
+     <p><%= value %></p>
+   </div>
+  <%- end %>
+<%- end %>
+<% content_for :javascript do %> 
+  <script type="text/javascript">
+    setTimeout("$('.alert').slideUp('slow')",2000);
+  </script>
+<% end %>

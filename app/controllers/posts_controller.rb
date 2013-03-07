@@ -28,7 +28,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to user_post_path(current_user, @post.id), notice: "has creado un nuevo post"
     else
-      flash[:error] = "error"
+      flash[:error] = @post.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -38,10 +38,10 @@ class PostsController < ApplicationController
     @comment = @post.comments.build(:title =>params[:comment][:title],:comment =>params[:comment][:comment], :user_id => params[:user_id])
     if @comment.save
       session.delete(:post_id)
-      redirect_to user_post_path(current_user, @post.id), notice: "has creado un nuevo post"
+      redirect_to user_post_path(current_user, @post.id), notice: "has creado un nuevo comentario"
     else
-      flash[:error] = "error"
-      render :new
+      flash[:error] = @comment.errors.full_messages.join(", ")
+      redirect_to user_post_path(current_user, @post.id)
     end
   end
 
