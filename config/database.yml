@@ -1,0 +1,24 @@
+defaults: &defaults
+  adapter: postgresql
+  template: template0
+  host: 'localhost'
+  username: postgres
+  password: password
+  
+test:
+  <<: *defaults
+  database: "kbsupport_test"
+
+development:
+  <<: *defaults
+  database: "kbsupport_dev"
+  host: localhost
+  encoding: utf8
+
+staging:
+  <<: *defaults
+  database: "kbsupport_staging"
+
+production:
+  <<: *defaults
+  database: "kbsupport_production"

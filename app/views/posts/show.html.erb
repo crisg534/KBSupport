@@ -1,0 +1,23 @@
+<div class="row-fluid">
+  <span class="span12">
+    <h2>  <%= @post.title%></h2>
+    <br/>
+    <%= @post.comment.html_safe %>
+    <br/>
+    <h4>Comments</h4>
+    <br/>
+    <%- if @comments.any? %>
+        <%- @comments.each do |comment| %>
+          <div class="row-fluid">
+            <div class="well">
+              <h4><%=comment.user ? comment.user.email : "" %></h4>
+              <br/>
+              <h4><%=comment.title%></h4>
+              <%=comment.comment ? comment.comment.html_safe : "" %>
+            </div>
+          </div>
+        <%-end%>
+      <%-end %>
+  </span>
+</div>
+<%= render :template => "comments/new" ,:locals =>  { :post => @post }  %> 
