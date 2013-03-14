@@ -7,7 +7,7 @@ gem 'rails', '3.2.12'
 
 gem 'pg'
 
-
+gem 'activeadmin', '0.5.1'
 gem 'devise', '2.0.4'
 gem 'therubyracer'
 gem "twitter-bootstrap-rails", '2.0.6'
