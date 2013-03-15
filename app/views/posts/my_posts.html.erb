@@ -5,13 +5,15 @@
       <th>Title</th>
       <th>User</th>
       <th>Date</th>
-      <th>Show Post </th>
+      <th>Post Config</th>
     </tr>
   </thead>
   <tbody>
     <%- @post.each do |post| %>
       <tr>
-        <td><%=post.title%></td> <td><%=post.user.email%></td><td><%= post.created_at.strftime("%A %d. %B %Y, %H %P") %></td><td><%= link_to "Show", user_post_path(current_user, post.id)  %></td><td><%= link_to "Destroy", user_post_path(current_user, post.id), :method=>:delete, :confirm=>"Are you sure? "  %></td>
+        <td><%=post.title%></td> <td><%=post.user.email%></td><td><%= post.created_at.strftime("%A %d. %B %Y, %H %P") %></td><td><%= link_to "Show", user_post_path(current_user, post.id)  %></td>
+        <td><%= link_to "Edit", edit_user_post_path(current_user, post.id)  %></td>
+        <td><%= link_to "Destroy", user_post_path(current_user, post.id), :method=>:delete, :confirm=>"Are you sure? "  %></td>
 
       </tr>
     <%-end%>

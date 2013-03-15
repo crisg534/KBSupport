@@ -1,0 +1,17 @@
+<%=  render "/shared/flash_messages"%>
+<div class="row">
+  <span class ="span9"
+    <span class ="well">
+      <h3>Post</h3> 
+        <%= form_for ([@user, @post]) , url: { action: "update" } do |f| %>
+          <%= f.label :title %>
+          <%= f.text_field :title, class: 'span5' %>
+          <%= f.label :comment %>
+          <%= f.text_area :comment,class: "field span12", id: 'post_area', row: "12",:style => "width:500px;" %>
+          <div class = "form-actions">
+            <%= f.submit 'Update Post', class: "btn btn-primary" %>
+          </div>
+          <%-end %>
+      </span>
+    </span>
+</div>

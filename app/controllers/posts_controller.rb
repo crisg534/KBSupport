@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!
+
   def index
     @post = Post.order('created_at DESC')
   end
@@ -20,14 +21,27 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post     = Post.find(params[:id])
-    @comments = @post.comments
-    @comment  =  @post.comments.build
+    @post             = Post.find(params[:id])
+    @comments         = @post.comments
+    @comment          = @post.comments.build
+    @user_equal_post  = @post.user_post_equal(current_user)
     session[:post_id] = @post.id
   end
-
-  def update
   
+  def edit
+    @user = current_user
+    @post = Post.find(params[:id])
+  end
+  
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(params[:post])
+      flash[:notice] = "Se ha actualizado el con exito"
+      redirect_to user_post_path(@post.id)
+    else
+      flash[:error] = @post.errors.full_messages.join(", ")
+      render :new
+    end
   end
   
   def new
