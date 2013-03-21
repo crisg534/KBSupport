@@ -1,4 +1,13 @@
 <h1>Posts</h1>
+<%= search_form_for @search, url: user_posts_path, method: :get do |f| %>
+  <div class="field">
+    <%= f.label :title_cont, "Title contains" %>
+    <%= f.text_field :title_cont %>
+    <%= f.label :comment_cont, "Comment contains" %>
+    <%= f.text_field :comment_cont %>
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>
 <table class="table table-bordered">
   <thead>
     <tr>

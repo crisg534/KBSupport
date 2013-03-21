@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @post = Post.order('created_at DESC')
+    @search = Post.search(params[:q])
+    @post = @search.result
   end
 
   def my_posts

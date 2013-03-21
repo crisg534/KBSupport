@@ -14,6 +14,7 @@ gem "twitter-bootstrap-rails", '2.0.6'
 gem 'sass-rails',   '~> 3.2.3'
 gem 'acts_as_commentable'
 gem 'tinymce-rails', '3.5.8.1'
+gem 'ransack', '0.7.2'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
